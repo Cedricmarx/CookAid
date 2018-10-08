@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:theme="@style/Theme.AppCompat.NoActionBar"
+    android:theme="@style/AppTheme"
     android:id="@+id/activity_main"
     android:background="@drawable/home_background_image">
 
@@ -44,6 +44,7 @@
         android:layout_width="265dp"
         android:layout_height="42dp"
         android:background="@drawable/home_signup_button"
+        android:onClick="signUpButton_Clicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -58,6 +59,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="60dp"
         android:background="@drawable/home_login_button"
+        android:onClick="loginButton_Clicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"

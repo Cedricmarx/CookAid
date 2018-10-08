@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="cookAidRed">#9A4141</color>
-    <color name="gradient_start">#cb2d3e</color>
-    <color name="gradient_end">#ef473a</color>
+    <color name="colorPrimary">#cb2d3e</color>
+    <color name="colorPrimaryDark">#b12332</color>
+    <color name="colorAccent">#CB2D3E</color>
+    <color name="clouds_gradient_1">#FFFFFF</color>
+    <color name="clouds_gradient_2">#ECE9E6</color>
+    <color name="text_color_primary">#363636</color>
 </resources>
