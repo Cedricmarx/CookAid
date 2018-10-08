@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CookAid</string>
+    <string name="logoName">COOKAID</string>
+    <string name="logoContentDescription">logo</string>
 </resources>

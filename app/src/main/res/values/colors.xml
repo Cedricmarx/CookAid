@@ -3,4 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="cookAidRed">#9A4141</color>
+    <color name="gradient_start">#cb2d3e</color>
+    <color name="gradient_end">#ef473a</color>
 </resources>
