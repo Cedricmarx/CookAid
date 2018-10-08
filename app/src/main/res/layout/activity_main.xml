@@ -7,14 +7,14 @@
     tools:context=".MainActivity"
     android:theme="@style/AppTheme"
     android:id="@+id/activity_main"
-    android:background="@drawable/home_background_image">
+    android:background="@drawable/home_background">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/logoImageView"
         android:layout_width="144dp"
         android:layout_height="81dp"
         android:contentDescription="@string/logoContentDescription"
-        android:src="@drawable/home_logo_white"
+        android:src="@drawable/white_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,14 +36,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/logoImageView"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/signUpButton"
         android:layout_width="265dp"
         android:layout_height="42dp"
-        android:background="@drawable/home_signup_button"
+        android:background="@drawable/home_signup_btn"
         android:onClick="signUpButton_Clicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="60dp"
-        android:background="@drawable/home_login_button"
+        android:background="@drawable/home_login_btn"
         android:onClick="loginButton_Clicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
