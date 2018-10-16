@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "406475612189",
+    "firebase_url": "https://cookaid-33947.firebaseio.com",
+    "project_id": "cookaid-33947",
+    "storage_bucket": "cookaid-33947.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406475612189:android:4d7733ab0a970ee4",
+        "android_client_info": {
+          "package_name": "be.pxl.project.cookaid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406475612189-lm0e0spesmhc4mj1cj6e55pp8g5529vl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSnCz1gED6a0qYFHc1VxcAoZp_2zUuSkk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
