@@ -2,4 +2,6 @@
     <string name="app_name">CookAid</string>
     <string name="logoName">COOKAID</string>
     <string name="logoContentDescription">logo</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_password">Password</string>
 </resources>
