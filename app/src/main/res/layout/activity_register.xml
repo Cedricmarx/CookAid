@@ -112,10 +112,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/registerButton" />
 
-    <ImageView
-        android:id="@+id/loginBtn"
+    <Button
+        android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -127,6 +127,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
         app:layout_constraintVertical_bias="0.171"
-        app:srcCompat="@drawable/signup_btn" />
+        android:background="@drawable/signup_btn" />
 
 </android.support.constraint.ConstraintLayout>
