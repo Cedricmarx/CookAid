@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
         tx.setTypeface(custom_font);
     }
 
-    public void loginButton_Clicked(View view) {
+    public void loginPageButton_Clicked(View view) {
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
 
-    public void signUpButton_Clicked(View view) {
+    public void signUpPageButton_Clicked(View view) {
         startActivity(new Intent(MainActivity.this, RegisterActivity.class));
     }
 }

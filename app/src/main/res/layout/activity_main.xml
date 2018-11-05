@@ -40,11 +40,11 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/signUpButton"
+        android:id="@+id/signUpPageButton"
         android:layout_width="265dp"
         android:layout_height="42dp"
         android:background="@drawable/home_signup_btn"
-        android:onClick="signUpButton_Clicked"
+        android:onClick="signUpPageButton_Clicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -53,18 +53,18 @@
         app:layout_constraintVertical_bias="0.738" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/loginPageButton"
         android:layout_width="265dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="60dp"
         android:background="@drawable/home_login_btn"
-        android:onClick="loginButton_Clicked"
+        android:onClick="loginPageButton_Clicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpButton"
+        app:layout_constraintTop_toBottomOf="@+id/signUpPageButton"
         app:layout_constraintVertical_bias="0.2" />
 
 </android.support.constraint.ConstraintLayout>
