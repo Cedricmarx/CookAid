@@ -102,12 +102,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/login_btn"
+        app:layout_constraintBottom_toTopOf="@+id/connect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
-        app:layout_constraintVertical_bias="0.171"
-        android:background="@drawable/login_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/password_input_layout" />
 
     <ImageView
         android:id="@+id/connect"
@@ -121,25 +120,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerButton"
-        app:layout_constraintVertical_bias="0.072"
+        app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
         app:srcCompat="@drawable/login_connect" />
 
-    <Button
+    <com.facebook.login.widget.LoginButton
         android:id="@+id/facebookBtn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/facebook_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/googleBtn"
         app:layout_constraintHorizontal_bias="0.818"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/connect"
-        app:layout_constraintVertical_bias="0.075"
-        android:background="@drawable/facebook_btn" />
+        app:layout_constraintVertical_bias="0.075" />
 
     <Button
         android:id="@+id/googleBtn"
