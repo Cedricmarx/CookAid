@@ -13,4 +13,5 @@
     <string name="btn_back"></string>
     <string name="facebook_app_id">267406873979496</string>
     <string name="fb_login_protocol_scheme">fb267406873979496</string>
+    <string name="server_client_id">406475612189-24th9jund273coje5ec89ujrv14ce9u3.apps.googleusercontent.com</string>
 </resources>

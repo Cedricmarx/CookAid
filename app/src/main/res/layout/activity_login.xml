@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/AppTheme"
     android:background="@drawable/gradient_bg_clouds"
+    android:theme="@style/AppTheme"
     tools:context=".LoginActivity">
 
 
@@ -17,14 +17,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:contentDescription="@string/logoContentDescription"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.157"
-        app:srcCompat="@drawable/red_logo"
-        android:contentDescription="@string/logoContentDescription"/>
+        app:srcCompat="@drawable/red_logo" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/name_input_layout"
@@ -123,24 +123,37 @@
         app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
         app:srcCompat="@drawable/login_connect" />
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/facebookBtn"
+    <FrameLayout
+        android:id="@+id/FrameLayout1"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/facebook_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/googleBtn"
-        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintEnd_toStartOf="@+id/FrameLayout2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintTop_toBottomOf="@+id/connect">
 
-    <Button
-        android:id="@+id/googleBtn"
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebookBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/fb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/facebook_btn"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/FrameLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -148,8 +161,29 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect"
-        app:layout_constraintVertical_bias="0.075"
-        android:background="@drawable/google_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/connect">
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/connect"
+            app:layout_constraintVertical_bias="0.075" />
+
+        <Button
+            android:id="@+id/google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/google_btn"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
