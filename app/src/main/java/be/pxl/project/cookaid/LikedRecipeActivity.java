@@ -1,18 +1,10 @@
 package be.pxl.project.cookaid;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,29 +13,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
-public class RecipeFragment extends Fragment {
-
-    public static RecipeFragment newInstance(){
-        RecipeFragment fragment = new RecipeFragment();
-        return fragment;
-    }
-
+public class LikedRecipeActivity extends AppCompatActivity {
 
     DatabaseReference ref;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-
-
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_liked_recipe, container, false);
-
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_liked_recipe);
 
         final ArrayList<Recipe> likedRecipeList = new ArrayList<>();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -66,11 +46,15 @@ public class RecipeFragment extends Fragment {
             }
         });
 
-        LikedRecipeAdapter likedRecipeAdapter = new LikedRecipeAdapter(likedRecipeList);
 
-        recyclerView.setAdapter(likedRecipeAdapter);
 
-        return view;
+        mRecyclerView = findViewById(R.id.recycle_view);
 
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new LikedRecipeAdapter(likedRecipeList);
+        mRecyclerView.setAdapter(mAdapter);
     }
 }
