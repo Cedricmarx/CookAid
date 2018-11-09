@@ -87,6 +87,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        searchRecipesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, SearchRecipesActivity.class));
+            }
+        });
+
     }
 
     @Override
@@ -97,31 +104,6 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(HomeActivity.this, PostRecipeActivity.class);
             intent.putExtra("BITMAP_IMAGE", imageBitmap);
             startActivity(intent);
-        }
-    }
-
-    public static class MyPagerAdapter extends FragmentPagerAdapter {
-
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (position){
-                case 0:
-                    return RecipeFragment.newInstance();
-                case 1:
-                    return CameraFragment.newInstance();
-                case 2:
-                    return SearchFragment.newInstance();
-            }
-            return null;
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
         }
     }
 }
