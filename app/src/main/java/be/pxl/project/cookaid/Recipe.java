@@ -1,22 +1,26 @@
 package be.pxl.project.cookaid;
 
+import android.net.Uri;
+
+import com.google.android.gms.tasks.Task;
+
 public class Recipe {
     private String name;
     private String category;
     private String level;
     private String recipe;
-    private byte[] photo;
+    private String uri;
 
     public Recipe() {
         // Default constructor
     }
 
-    public Recipe(String name, String category, String level, String recipe, byte[] photo) {
+    public Recipe(String name, String category, String level, String recipe, String uri) {
         this.name = name;
         this.category = category;
         this.level = level;
         this.recipe = recipe;
-        this.photo = photo;
+        this.uri = uri;
     }
 
     public String getName() {
@@ -51,12 +55,12 @@ public class Recipe {
         this.recipe = recipe;
     }
 
-    public byte[] getPhoto() {
-        return photo;
+    public String getUri() {
+        return uri;
     }
 
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
 }
