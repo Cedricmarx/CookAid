@@ -6,4 +6,6 @@
     <color name="clouds_gradient_1">#FFFFFF</color>
     <color name="clouds_gradient_2">#ECE9E6</color>
     <color name="text_color_primary">#363636</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
 </resources>

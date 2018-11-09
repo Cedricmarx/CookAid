@@ -14,4 +14,12 @@
     <string name="facebook_app_id">267406873979496</string>
     <string name="fb_login_protocol_scheme">fb267406873979496</string>
     <string name="server_client_id">406475612189-24th9jund273coje5ec89ujrv14ce9u3.apps.googleusercontent.com</string>
+    <string name="hint_recipe_name">Enter a recipe name</string>
+    <string name="hint_recipe">Fill in your recipe</string>
+    <string-array name="recipe_levels">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Novice</item>
+        <item>Expert</item>
+    </string-array>
 </resources>

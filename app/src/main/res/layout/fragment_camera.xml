@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
-    <SurfaceView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/surface"/>
-
     <Button
+        android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        android:id="@+id/logout"/>
+        android:text="Logout" />
 
-    <Button
-        android:gravity="bottom"
+    <com.camerakit.CameraKitView
+        android:id="@+id/camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="capture"
-        android:id="@+id/capture"/>
-
+        android:adjustViewBounds="true"
+        android:keepScreenOn="true"
+        app:camera_facing="back"
+        app:camera_flash="auto"
+        app:camera_focus="continuous"
+        app:camera_permissions="camera" />
 </FrameLayout>
