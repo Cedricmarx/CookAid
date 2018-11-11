@@ -2,8 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center"
-    android:layout_width="250dp"
-    android:layout_height="170dp">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="100dp"
+    android:background="@color/clouds_gradient_2">
 
     <TextView
         android:id="@+id/helloText"

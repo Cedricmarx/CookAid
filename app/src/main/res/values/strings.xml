@@ -17,6 +17,8 @@
     <string name="hint_recipe_name">Enter a recipe name</string>
     <string name="hint_recipe">Fill in your recipe</string>
     <string name="hello_world">Hello</string>
+    <string name="hint_category_name">Enter a category</string>
+    <string name="hint_level_name">Enter a level</string>
     <string-array name="recipe_levels">
         <item>Beginner</item>
         <item>Intermediate</item>

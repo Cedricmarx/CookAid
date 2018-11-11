@@ -5,6 +5,7 @@ import android.net.Uri;
 import com.google.android.gms.tasks.Task;
 
 public class Recipe {
+    private String id;
     private String name;
     private String category;
     private String level;
@@ -15,7 +16,8 @@ public class Recipe {
         // Default constructor
     }
 
-    public Recipe(String name, String category, String level, String recipe, String uri) {
+    public Recipe(String id, String name, String category, String level, String recipe, String uri) {
+        this.id = id;
         this.name = name;
         this.category = category;
         this.level = level;
@@ -63,4 +65,11 @@ public class Recipe {
         this.uri = uri;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

@@ -8,17 +8,23 @@
     android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/left"
+        android:id="@+id/search_recipes_back_btn"
+        android:layout_width="47dp"
+        android:layout_height="43dp"
         android:layout_margin="10dp"
-        android:text="Left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:background="@drawable/backward_arrow"/>
+    <Button
+        android:id="@+id/dislike_btn"
+        android:layout_margin="10dp"
+        android:layout_width="47dp"
+        android:layout_height="43dp"
+        android:background="@drawable/dislike_btn" />
 
     <Button
-        android:id="@+id/right"
+        android:id="@+id/like_btn"
         android:layout_margin="10dp"
-        android:text="Right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="47dp"
+        android:layout_height="43dp"
+        android:background="@drawable/like_btn" />
 
 </LinearLayout>

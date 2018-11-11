@@ -73,6 +73,7 @@ public class PostRecipeActivity extends AppCompatActivity {
     }
 
     private void postRecipeToDatabase() {
+        final String id = UUID.randomUUID().toString();
         final String name = mRecipeNameEditText.getText().toString();
         final String category = mCategoryEditText.getText().toString();
         final String level = mLevelEditText.getText().toString();
@@ -93,7 +94,7 @@ public class PostRecipeActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Recipe tempRecipe = new Recipe(name, category, level, recipe, taskSnapshot.getMetadata().getPath());
+                Recipe tempRecipe = new Recipe(id, name, category, level, recipe, taskSnapshot.getMetadata().getPath());
                 String key = mDatabase.child("recipes").push().getKey();
                 mDatabase.child("recipes").child(key).setValue(tempRecipe);
                 startActivity(new Intent(PostRecipeActivity.this, HomeActivity.class));

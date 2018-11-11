@@ -24,10 +24,6 @@ public class MainActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
 
         setContentView(R.layout.activity_main);
-
-        TextView tx = findViewById(R.id.logoTextView);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/Lovelo_Black.otf");
-        tx.setTypeface(custom_font);
     }
 
     public void loginPageButton_Clicked(View view) {
