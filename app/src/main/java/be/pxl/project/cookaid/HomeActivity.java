@@ -94,6 +94,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        savedRecipesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, LikedRecipeActivity.class));
+            }
+        });
+
+
     }
 
     @Override
