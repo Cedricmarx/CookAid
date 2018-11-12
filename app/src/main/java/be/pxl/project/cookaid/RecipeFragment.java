@@ -1,76 +1,81 @@
 package be.pxl.project.cookaid;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
 
-public class RecipeFragment extends Fragment {
+public class RecipeFragment extends DialogFragment {
 
-    public static RecipeFragment newInstance(){
-        RecipeFragment fragment = new RecipeFragment();
-        return fragment;
-    }
+    TextView recipeName;
+    TextView recipeCategory;
+    TextView recipeLevel;
+    TextView recipeRecipe;
+    ImageView recipeImage;
+    final long ONE_MEGABYTE = 1024 * 1024;
 
-
-    DatabaseReference ref;
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-
-
-
+    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_liked_recipe, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
+        final View rootView=inflater.inflate(R.layout.recipe_detail, container, false);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recipeName=rootView.findViewById(R.id.recipe_detail_name);
+        recipeCategory=rootView.findViewById(R.id.recipe_detail_category);
+        recipeLevel=rootView.findViewById(R.id.recipe_detail_level);
+        recipeRecipe=rootView.findViewById(R.id.recipe_detail_recipe);
+        recipeImage=rootView.findViewById(R.id.recipe_detail_image);
 
-        final ArrayList<Recipe> likedRecipeList = new ArrayList<>();
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("/recipes/");
+
+        String name = this.getArguments().getString("NAME_KEY");
+        String category = this.getArguments().getString("CATEGORY_KEY");
+        String level = this.getArguments().getString("LEVEL_KEY");
+        String recipe = this.getArguments().getString("RECIPE_KEY");
+        String uri = this.getArguments().getString("URI_KEY");
 
 
-        ref.addValueEventListener(new ValueEventListener() {
+        recipeName.setText(name);
+        recipeCategory.setText(category);
+        recipeLevel.setText(level);
+        recipeRecipe.setText(recipe);
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+        storageReference.child(uri).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for( DataSnapshot ds: dataSnapshot.getChildren()){
-                    Recipe recipe = ds.getValue(Recipe.class);
-                    likedRecipeList.add(recipe);
-                    mAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onSuccess(byte[] bytes) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                Drawable drawable = new BitmapDrawable(rootView.getResources(), bitmap);
+                recipeImage.setBackground(drawable);
             }
         });
 
-        LikedRecipeAdapter likedRecipeAdapter = new LikedRecipeAdapter(likedRecipeList);
-
-        recyclerView.setAdapter(likedRecipeAdapter);
-
-        return view;
-
+        return rootView;
     }
+
 }
