@@ -63,11 +63,24 @@ public class SearchRecipeActivity extends AppCompatActivity {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.child("recipes").getChildren()) {
+               for (DataSnapshot ds : dataSnapshot.child("recipes").getChildren()) {
                     final Recipe recipe = ds.getValue(Recipe.class);
                     mRecipeList.add(recipe);
                     mArrayAdapter.notifyDataSetChanged();
-                }
+               }
+
+               for (DataSnapshot recipeIdDs: dataSnapshot.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("savedRecipeIds").getChildren()) {
+                   String recipeId = recipeIdDs.getValue().toString();
+                   Recipe recipe = dataSnapshot.child("recipes").child(recipeId).getValue(Recipe.class);
+                   if (mRecipeList.contains(recipe)) {
+                       mRecipeList.remove(recipe);
+                       mArrayAdapter.notifyDataSetChanged();
+                   }
+               }
+                mArrayAdapter.notifyDataSetChanged();
+
+
+
             }
 
             @Override
