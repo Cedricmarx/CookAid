@@ -10,7 +10,7 @@
     <string name="lbl_forgot_password">Forgot your password?</string>
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
     <string name="btn_reset_password">Reset Password</string>
-    <string name="btn_back"></string>
+    <string name="btn_back" />
     <string name="facebook_app_id">267406873979496</string>
     <string name="fb_login_protocol_scheme">fb267406873979496</string>
     <string name="server_client_id">406475612189-24th9jund273coje5ec89ujrv14ce9u3.apps.googleusercontent.com</string>

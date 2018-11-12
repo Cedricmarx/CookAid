@@ -2,39 +2,16 @@ package be.pxl.project.cookaid;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity {
-
-    //FragmentPagerAdapter adapterViewPager;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
-    private Button takePictureBtn, searchRecipesBtn, savedRecipesBtn;
-    private ImageView mTestImageView;
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -58,21 +35,18 @@ public class HomeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_home);
 
-        /*ViewPager viewPager = findViewById(R.id.viewPager);
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            finish();
+            startActivity(new Intent(HomeActivity.this, MainActivity.class));
+        }
 
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(adapterViewPager);
-        viewPager.setCurrentItem(1);*/
-
-        takePictureBtn = findViewById(R.id.take_picture_btn);
-        searchRecipesBtn = findViewById(R.id.search_recipes_btn);
-        savedRecipesBtn = findViewById(R.id.saved_recipes_btn);
-        mTestImageView = findViewById(R.id.test_image_decode);
+        Button takePictureBtn = findViewById(R.id.take_picture_btn);
+        Button searchRecipesBtn = findViewById(R.id.search_recipes_btn);
+        Button savedRecipesBtn = findViewById(R.id.saved_recipes_btn);
 
         takePictureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 dispatchTakePictureIntent();
             }
         });
@@ -80,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         searchRecipesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, SearchRecipesActivity.class));
+                startActivity(new Intent(HomeActivity.this, SearchRecipeActivity.class));
             }
         });
 

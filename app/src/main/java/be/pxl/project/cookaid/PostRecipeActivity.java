@@ -2,20 +2,16 @@ package be.pxl.project.cookaid;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,15 +24,11 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 public class PostRecipeActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private List<String> mLevelList, mCategoryList;
-    //private MaterialSpinner mCategorySpinner;
-    private ImageView mPreviewImageView;
-    private Button mPostButton;
     private EditText mRecipeNameEditText, mRecipeEditText, mCategoryEditText, mLevelEditText;
     private Bitmap mPreviewImage;
 
@@ -49,11 +41,11 @@ public class PostRecipeActivity extends AppCompatActivity {
         mPreviewImage = getIntent().getParcelableExtra("BITMAP_IMAGE");
         mLevelList = new ArrayList<>();
         mCategoryList = new ArrayList<>();
-        mPostButton = findViewById(R.id.post_image_btn);
+        Button postButton = findViewById(R.id.post_image_btn);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mRecipeNameEditText = findViewById(R.id.recipe_name_edit_text);
         mRecipeEditText = findViewById(R.id.recipe_edit_text);
-        mPreviewImageView = findViewById(R.id.preview_image_view);
+        ImageView previewImageView = findViewById(R.id.preview_image_view);
         mCategoryEditText = findViewById(R.id.category_edit_text);
         mLevelEditText = findViewById(R.id.level_edit_text);
 
@@ -62,9 +54,9 @@ public class PostRecipeActivity extends AppCompatActivity {
 
         mDatabase.addValueEventListener(levelsListener);
         mDatabase.addValueEventListener(categoryListener);
-        mPreviewImageView.setImageBitmap(mPreviewImage);
+        previewImageView.setImageBitmap(mPreviewImage);
 
-        mPostButton.setOnClickListener(new View.OnClickListener() {
+        postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 postRecipeToDatabase();

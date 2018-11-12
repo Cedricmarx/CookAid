@@ -1,9 +1,5 @@
 package be.pxl.project.cookaid;
 
-import android.net.Uri;
-
-import com.google.android.gms.tasks.Task;
-
 public class Recipe {
     private String id;
     private String name;

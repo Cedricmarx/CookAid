@@ -14,16 +14,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.lorentzos.flingswipe.FlingCardListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
 
-public class SearchRecipesActivity extends AppCompatActivity {
+public class SearchRecipeActivity extends AppCompatActivity {
     private ArrayList<Recipe> mRecipeList;
     private SearchRecipeAdapter mArrayAdapter;
     private DatabaseReference mDatabase;
-    private Button mBackBtn, mLikeBtn, mDislikeBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,25 +31,25 @@ public class SearchRecipesActivity extends AppCompatActivity {
         final SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 
         mRecipeList = new ArrayList<>();
-        mBackBtn = findViewById(R.id.search_recipes_back_btn);
-        mLikeBtn = findViewById(R.id.like_btn);
-        mDislikeBtn = findViewById(R.id.dislike_btn);
+        Button backBtn = findViewById(R.id.search_recipes_back_btn);
+        Button likeBtn = findViewById(R.id.like_btn);
+        Button dislikeBtn = findViewById(R.id.dislike_btn);
 
-        mBackBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
 
-        mLikeBtn.setOnClickListener(new View.OnClickListener() {
+        likeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 flingContainer.getTopCardListener().selectRight();
             }
         });
 
-        mDislikeBtn.setOnClickListener(new View.OnClickListener() {
+        dislikeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 flingContainer.getTopCardListener().selectLeft();
@@ -87,7 +85,7 @@ public class SearchRecipesActivity extends AppCompatActivity {
 
             @Override
             public void onLeftCardExit(Object o) {
-                Toast.makeText(SearchRecipesActivity.this, "Dislike!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchRecipeActivity.this, "Dislike!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -98,7 +96,7 @@ public class SearchRecipesActivity extends AppCompatActivity {
                     mDatabase.child("users").child(userId).child("savedRecipeIds").child(recipe.getId()).setValue(recipe.getId());
                 }
 
-                Toast.makeText(SearchRecipesActivity.this, "Like!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchRecipeActivity.this, "Like!", Toast.LENGTH_SHORT).show();
             }
 
             @Override

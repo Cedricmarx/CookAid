@@ -13,15 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
 public class SearchRecipeAdapter extends ArrayAdapter<Recipe> {
-
-
     public SearchRecipeAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull List<Recipe> objects) {
         super(context, resource, textViewResourceId, objects);
     }
