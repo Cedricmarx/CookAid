@@ -3,9 +3,9 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            keyAlias 'cookaid'
+            keyAlias 'CookAid_key'
             keyPassword 'cookaid'
-            storeFile file('C:/Users/11600776/keystores/debug.cookaid.jks')
+            storeFile file('/home/cedric/AndroidStudioProjects/CookAid/keystores/debug.cookaid.jks')
             storePassword 'cookaid'
         }
     }
@@ -45,6 +45,7 @@ dependencies {
     implementation 'com.lorentzos.swipecards:library:1.0.9'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.mobsandgeeks:android-saripaar:2.0.3'
 }
 
 apply plugin: 'com.google.gms.google-services'
