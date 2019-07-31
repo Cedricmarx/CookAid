@@ -21,6 +21,7 @@
     <string name="hint_level_name">Enter a level</string>
     <string name="username_already_exists">Username already exists</string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="forgot_password">Forgot Password?</string>
     <string-array name="recipe_levels">
         <item>Beginner</item>
         <item>Intermediate</item>
