@@ -2,7 +2,7 @@
     <string name="app_name">CookAid</string>
     <string name="logoName">COOKAID</string>
     <string name="logoContentDescription">logo</string>
-    <string name="hint_name">Name</string>
+    <string name="hint_name">Username</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="minimum_password">Password to short, enter a minimum of 6 characters!</string>
@@ -20,6 +20,7 @@
     <string name="hint_category_name">Enter a category</string>
     <string name="hint_level_name">Enter a level</string>
     <string name="username_already_exists">Username already exists</string>
+    <string name="already_have_an_account">Already have an account?</string>
     <string-array name="recipe_levels">
         <item>Beginner</item>
         <item>Intermediate</item>

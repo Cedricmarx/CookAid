@@ -1,12 +1,9 @@
 package be.pxl.project.cookaid;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,17 +18,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
-import com.mobsandgeeks.saripaar.annotation.Pattern;
 
 import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity implements Validator.ValidationListener {
-
-    private FirebaseAuth auth;
 
     @NotEmpty
     private EditText editTextName;
@@ -44,17 +37,15 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
     @Password
     private EditText editTextPassword;
 
+    private FirebaseAuth auth;
     private Button btnSignUp;
-
     private Validator validator;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
         editTextName = findViewById(R.id.editTextName);
@@ -87,13 +78,6 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
         if (username.equalsIgnoreCase("pmk")) {
             editTextName.setError(getText(R.string.username_already_exists));
         }
-
-
-    }
-
-
-    public void already_account_click(View view) {
-        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
     }
 
     @Override
@@ -127,7 +111,6 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
                                 }
                             }
                         });
-
             }
         });
     }
@@ -137,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
         for (ValidationError error : errors) {
             View view = error.getView();
             String message = error.getCollatedErrorMessage(this);
-            // Display error messages
+
             if (view instanceof EditText) {
                 ((EditText) view).setError(message);
             } else {
