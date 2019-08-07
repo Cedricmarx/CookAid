@@ -13,4 +13,13 @@
 
     <include layout="@layout/buttons" />
 
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/error_text_view"
+        android:layout_width="325dp"
+        android:layout_height="235dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/no_recipes_available"
+        android:textSize="30sp"
+        android:visibility="invisible" />
 </merge>

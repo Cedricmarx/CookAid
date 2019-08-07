@@ -23,6 +23,7 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="no_account_sign_up_here">No account? sign up here.</string>
+    <string name="no_recipes_available">No recipes available at the moment!</string>
     <string-array name="recipe_levels">
         <item>Beginner</item>
         <item>Intermediate</item>

@@ -39,8 +39,6 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-        requestPermissions(new String[]{Manifest.permission.CAMERA}, 2);
         btnCapture = (Button) findViewById(R.id.btnTakePicture);
         imgCapture = (ImageView) findViewById(R.id.capturedImage);
         btnCapture.setOnClickListener(new View.OnClickListener() {

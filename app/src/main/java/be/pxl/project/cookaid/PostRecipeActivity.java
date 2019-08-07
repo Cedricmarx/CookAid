@@ -2,9 +2,14 @@ package be.pxl.project.cookaid;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.Point;
+import android.media.ExifInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +27,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +44,39 @@ public class PostRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_recipe);
 
-        mPreviewImage = getIntent().getParcelableExtra("BITMAP_IMAGE");
+        String bitmapUri = getIntent().getStringExtra("BITMAP_IMAGE_PATH");
+        Bitmap bitmap = BitmapFactory.decodeFile(bitmapUri);
+        ExifInterface exif = null;
+        try {
+            exif = new ExifInterface(bitmapUri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        int rotation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+        int rotationInDegrees = exifToDegrees(rotation);
+        int deg = rotationInDegrees;
+        Matrix matrix = new Matrix();
+        if (rotation != 0f) {
+            matrix.preRotate(rotationInDegrees);
+            bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        }
+
+        Display display = this.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int newWidth = size.x;
+
+//Get actual width and height of image
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+// Calculate the ratio between height and width of Original Image
+        float ratio = (float) height / (float) width;
+        float scale = getApplicationContext().getResources().getDisplayMetrics().density;
+        int newHeight = (int) ((int) (width * ratio)/scale);
+
+
+        mPreviewImage = bitmap;
         mLevelList = new ArrayList<>();
         mCategoryList = new ArrayList<>();
         Button postButton = findViewById(R.id.post_image_btn);
@@ -54,7 +92,12 @@ public class PostRecipeActivity extends AppCompatActivity {
 
         mDatabase.addValueEventListener(levelsListener);
         mDatabase.addValueEventListener(categoryListener);
+//        final double viewWidthToBitmapWidthRatio = (double)previewImageView.getWidth() / (double)bitmap.getWidth();
+//        previewImageView.getLayoutParams().height = (int) (bitmap.getHeight() * viewWidthToBitmapWidthRatio);
+
         previewImageView.setImageBitmap(mPreviewImage);
+
+
 
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +105,13 @@ public class PostRecipeActivity extends AppCompatActivity {
                 postRecipeToDatabase();
             }
         });
+    }
+
+    private static int exifToDegrees(int exifOrientation) {
+        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) { return 90; }
+        else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {  return 180; }
+        else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {  return 270; }
+        return 0;
     }
 
     private void postRecipeToDatabase() {
@@ -75,7 +125,7 @@ public class PostRecipeActivity extends AppCompatActivity {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images/" + name + UUID.randomUUID().toString());
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        mPreviewImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        mPreviewImage.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream);
         byte[] data = byteArrayOutputStream.toByteArray();
 
         UploadTask uploadTask = storageReference.putBytes(data);
@@ -90,6 +140,7 @@ public class PostRecipeActivity extends AppCompatActivity {
                 String key = mDatabase.child("recipes").push().getKey();
                 mDatabase.child("recipes").child(key).setValue(tempRecipe);
                 startActivity(new Intent(PostRecipeActivity.this, HomeActivity.class));
+                finish();
             }
         });
     }
