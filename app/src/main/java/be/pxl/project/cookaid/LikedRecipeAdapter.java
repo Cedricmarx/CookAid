@@ -40,7 +40,7 @@ public class LikedRecipeAdapter extends RecyclerView.Adapter<LikedRecipeHolder>{
     @NonNull
     @Override
     public LikedRecipeHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recipe_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recipe_list_content, viewGroup, false);
         return new LikedRecipeHolder(view);
     }
 

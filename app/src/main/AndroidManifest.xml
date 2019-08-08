@@ -12,8 +12,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <uses-feature
-        android:name="android.hardware.camera2" />
+    <uses-feature android:name="android.hardware.camera2" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -21,6 +20,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity
+            android:name=".RecipeListActivity"
+            android:label="@string/title_recipe_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".RecipeDetailActivity"
+            android:label="@string/title_recipe_detail"
+            android:parentActivityName=".RecipeListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.pxl.project.cookaid.RecipeListActivity" />
+        </activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.vysh.fullsizeimage.fileprovider"
@@ -34,6 +47,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -42,7 +56,6 @@
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".LikedRecipeActivity" />
-
         <activity
             android:name=".PostRecipeActivity"
             android:theme="@style/AppTheme" />
