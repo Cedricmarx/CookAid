@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,16 +14,32 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Email;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Password;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
-public class LoginActivity extends AppCompatActivity {
-    private EditText mInputEmail, mInputPassword;
+import java.util.List;
+
+public class LoginActivity extends AppCompatActivity implements Validator.ValidationListener {
+
+    @NotEmpty
+    @Email
+    private EditText mInputEmail;
+
+    @NotEmpty
+    @Password
+    private EditText mInputPassword;
+
     private FirebaseAuth mAuth;
+    private Validator mValidator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Get Firebase mAuth instance
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() != null) {
@@ -34,10 +49,15 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
-        mInputEmail = findViewById(R.id.editTextEmail);
-        mInputPassword = findViewById(R.id.editTextPassword);
-        Button loginButton = findViewById(R.id.loginButton);
-        TextView resetTextView = findViewById(R.id.forgotPasswordTextView);
+        mInputEmail = findViewById(R.id.edit_text_email);
+        mInputPassword = findViewById(R.id.edit_text_password);
+        Button btnLogin = findViewById(R.id.login_button);
+        TextView resetTextView = findViewById(R.id.forgot_password_text_view);
+        TextView noAccountSignUpHereTextView = findViewById(R.id.no_account_sign_up_here);
+        mValidator = new Validator(this);
+        mValidator.setValidationListener(this);
+
+        PushDownAnim.setPushDownAnimTo(btnLogin, resetTextView, noAccountSignUpHereTextView);
 
         resetTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,43 +66,60 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        noAccountSignUpHereTextView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String email = mInputEmail.getText().toString();
-                final String password = mInputPassword.getText().toString();
-
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                }
-
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the mAuth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                if (!task.isSuccessful()) {
-                                    // there was an error
-                                    if (password.length() < 6) {
-                                        mInputPassword.setError(getString(R.string.minimum_password));
-                                    } else {
-                                        Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
-                                    }
-                                } else {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
-                        });
-
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnLogin_onClick(view);
+            }
+        });
+    }
+
+    private void btnLogin_onClick(View view) {
+        mValidator.validate();
+    }
+
+    @Override
+    public void onValidationSucceeded() {
+        String email = mInputEmail.getText().toString();
+        final String password = mInputPassword.getText().toString();
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            if (password.length() < 6) {
+                                mInputPassword.setError(getString(R.string.minimum_password));
+                            } else {
+                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors) {
+            View view = error.getView();
+            String message = error.getCollatedErrorMessage(this);
+
+            if (view instanceof EditText) {
+                ((EditText) view).setError(message);
+            } else {
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

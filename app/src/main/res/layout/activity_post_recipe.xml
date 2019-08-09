@@ -48,7 +48,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/category_edit_text"
+            android:id="@+id/level_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/level_edit_text"
+            android:id="@+id/category_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"
@@ -86,46 +86,6 @@
             android:textColor="@color/text_color_primary"
             android:textColorHint="@color/text_color_primary" />
     </android.support.design.widget.TextInputLayout>
-
-    <!--<Spinner
-        android:id="@+id/category_spinner"
-        android:layout_width="302dp"
-        android:layout_height="40dp"
-        app:ms_multiline="false"
-        app:ms_hint="Select a category"
-        app:ms_enableFloatingLabel="false"
-        app:ms_enableErrorLabel="false"
-        app:ms_floatingLabelText="floating label"
-        app:ms_typeface="typeface.ttf"
-        app:ms_thickness="2dp"
-        app:ms_arrowSize="16dp"
-        app:ms_alignLabels="false"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/preview_image_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.027"
-         />
-
-    <Spinner
-        android:id="@+id/level_spinner"
-        android:layout_width="302dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/preview_image_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        style="@style/Base.Widget.AppCompat.Spinner.Underlined" />-->
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/recipe_input_layout"
@@ -158,19 +118,20 @@
 
     <ImageView
         android:id="@+id/preview_image_view"
-        android:layout_width="214dp"
-        android:layout_height="194dp"
+        android:layout_width="401dp"
+        android:layout_height="433dp"
+        android:layout_centerInParent="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="true"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipe_input_layout"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.076" />
 
     <Button
         android:id="@+id/post_image_btn"
@@ -183,7 +144,8 @@
         android:background="@drawable/next_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_input_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/recipe_input_layout"
+        app:layout_constraintVertical_bias="0.961" />
 </android.support.constraint.ConstraintLayout>

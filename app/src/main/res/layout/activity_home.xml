@@ -1,80 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
     android:background="@drawable/home_background">
-
-    <!--<android.support.v4.view.ViewPager
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/viewPager">
+        android:orientation="vertical"
+        android:gravity="center">
 
+        <Button
+            android:id="@+id/take_picture_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/take_picture_btn" />
 
-    </android.support.v4.view.ViewPager>-->
+        <Button
+            android:id="@+id/search_recipes_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/search_recipes_btn" />
 
-    <Button
-        android:id="@+id/take_picture_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/take_picture_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21" />
+        <Button
+            android:id="@+id/saved_recipes_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/saved_recipes_btn" />
 
-    <Button
-        android:id="@+id/search_recipes_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/search_recipes_btn"
-        app:layout_constraintBottom_toTopOf="@+id/saved_recipes_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/take_picture_btn" />
-
-    <Button
-        android:id="@+id/saved_recipes_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="100dp"
-        android:background="@drawable/saved_recipes_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_recipes_btn" />
-
-    <TextView
-        android:id="@+id/logoutTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:text="Do you want to logout ?"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="logoutTextView_clicked"
-        app:layout_constraintTop_toBottomOf="@+id/saved_recipes_btn" />
-
-    <ImageView
-        android:id="@+id/test_image_decode"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
-
-
+        <TextView
+            android:id="@+id/logout_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="logoutTextView_clicked"
+            android:text="@string/do_you_want_to_logout"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

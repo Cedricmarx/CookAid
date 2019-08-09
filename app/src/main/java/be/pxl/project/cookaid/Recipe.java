@@ -9,7 +9,6 @@ public class Recipe {
     private String uri;
 
     public Recipe() {
-        // Default constructor
     }
 
     public Recipe(String id, String name, String category, String level, String recipe, String uri) {
