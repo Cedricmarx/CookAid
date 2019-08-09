@@ -9,7 +9,7 @@
     android:background="@drawable/home_background">
 
     <ImageView
-        android:id="@+id/logoImageView"
+        android:id="@+id/logo_image_view"
         android:layout_width="144dp"
         android:layout_height="81dp"
         android:contentDescription="@string/logoContentDescription"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.181" />
 
     <TextView
-        android:id="@+id/logoTextView"
+        android:id="@+id/logo_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -35,17 +35,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoImageView"
+        app:layout_constraintTop_toBottomOf="@+id/logo_image_view"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/signUpPageButton"
+        android:id="@+id/sign_up_page_button"
         android:layout_width="265dp"
         android:layout_height="42dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/home_signup_btn"
         android:onClick="signUpPageButton_Clicked"
-        app:layout_constraintBottom_toTopOf="@+id/loginPageButton"
+        app:layout_constraintBottom_toTopOf="@+id/login_page_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
         app:layout_constraintVertical_bias="0.98" />
 
     <Button
-        android:id="@+id/loginPageButton"
+        android:id="@+id/login_page_button"
         android:layout_width="265dp"
         android:layout_height="40dp"
         android:layout_marginBottom="32dp"

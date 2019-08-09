@@ -28,7 +28,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         mInputEmail = findViewById(R.id.email);
         Button btnReset = findViewById(R.id.btn_reset_password);
-        mProgressBar = findViewById(R.id.progressBar);
+        mProgressBar = findViewById(R.id.progress_bar);
 
         PushDownAnim.setPushDownAnimTo(btnReset);
 

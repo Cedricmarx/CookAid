@@ -49,10 +49,10 @@ public class SignUpActivity extends AppCompatActivity implements Validator.Valid
         mAuth = FirebaseAuth.getInstance();
 
         mEditTextName = findViewById(R.id.editTextName);
-        mEditTextEmail = findViewById(R.id.editTextEmail);
-        mEditTextPassword = findViewById(R.id.editTextPassword);
-        Button btnSignUp = findViewById(R.id.registerButton);
-        TextView alreadyLoggedInTextView = findViewById(R.id.alreadyAccountTextView);
+        mEditTextEmail = findViewById(R.id.edit_text_email);
+        mEditTextPassword = findViewById(R.id.edit_text_password);
+        Button btnSignUp = findViewById(R.id.sign_up_button);
+        TextView alreadyLoggedInTextView = findViewById(R.id.already_account_text_view);
         mValidator = new Validator(this);
         mValidator.setValidationListener(this);
 

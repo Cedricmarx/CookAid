@@ -14,8 +14,6 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -41,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         Button takePictureBtn = findViewById(R.id.take_picture_btn);
         Button searchRecipesBtn = findViewById(R.id.search_recipes_btn);
         Button savedRecipesBtn = findViewById(R.id.saved_recipes_btn);
-        TextView logoutTextView = findViewById(R.id.logoutTextView);
+        TextView logoutTextView = findViewById(R.id.logout_text_view);
 
         PushDownAnim.setPushDownAnimTo(takePictureBtn, searchRecipesBtn, savedRecipesBtn, logoutTextView);
 

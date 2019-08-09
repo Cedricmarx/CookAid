@@ -38,7 +38,7 @@ public class SearchRecipeAdapter extends ArrayAdapter<Recipe> {
         final Recipe recipe = mRecipeList.get(position);
 
         if (recipe != null) {
-            final TextView cardTextView = listItem.findViewById(R.id.helloText);
+            final TextView cardTextView = listItem.findViewById(R.id.text_view);
             cardTextView.setText(recipe.getName());
 
             final ImageView recipeImageView = listItem.findViewById(R.id.recipe_image_view);

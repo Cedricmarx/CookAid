@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, HomeActivity.class));
         }
 
-        Button loginPageBtn = findViewById(R.id.loginPageButton);
-        Button signUpPageBtn = findViewById(R.id.signUpPageButton);
+        Button loginPageBtn = findViewById(R.id.login_page_button);
+        Button signUpPageBtn = findViewById(R.id.sign_up_page_button);
 
         PushDownAnim.setPushDownAnimTo(loginPageBtn, signUpPageBtn);
     }

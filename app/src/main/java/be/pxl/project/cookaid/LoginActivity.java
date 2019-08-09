@@ -49,11 +49,11 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
         setContentView(R.layout.activity_login);
 
-        mInputEmail = findViewById(R.id.editTextEmail);
-        mInputPassword = findViewById(R.id.editTextPassword);
-        Button btnLogin = findViewById(R.id.loginButton);
-        TextView resetTextView = findViewById(R.id.forgotPasswordTextView);
-        TextView noAccountSignUpHereTextView = findViewById(R.id.noAccountSignUpHere);
+        mInputEmail = findViewById(R.id.edit_text_email);
+        mInputPassword = findViewById(R.id.edit_text_password);
+        Button btnLogin = findViewById(R.id.login_button);
+        TextView resetTextView = findViewById(R.id.forgot_password_text_view);
+        TextView noAccountSignUpHereTextView = findViewById(R.id.no_account_sign_up_here);
         mValidator = new Validator(this);
         mValidator.setValidationListener(this);
 
