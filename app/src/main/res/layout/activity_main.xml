@@ -42,28 +42,26 @@
         android:id="@+id/signUpPageButton"
         android:layout_width="265dp"
         android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/home_signup_btn"
         android:onClick="signUpPageButton_Clicked"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/loginPageButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.738" />
+        app:layout_constraintVertical_bias="0.98" />
 
     <Button
         android:id="@+id/loginPageButton"
         android:layout_width="265dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/home_login_btn"
         android:onClick="loginPageButton_Clicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpPageButton"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

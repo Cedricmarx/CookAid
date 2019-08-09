@@ -1,50 +1,56 @@
 package be.pxl.project.cookaid;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class SearchRecipeAdapter extends ArrayAdapter<Recipe> {
-    public SearchRecipeAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull List<Recipe> objects) {
-        super(context, resource, textViewResourceId, objects);
+    private Context mContext;
+    private List<Recipe> mRecipeList;
+
+    SearchRecipeAdapter(@NonNull Context context, @NonNull List<Recipe> objects) {
+        super(context, 0, objects);
+        this.mContext = context;
+        this.mRecipeList = objects;
     }
 
     @NonNull
     @Override
     public View getView(int position, @NonNull View convertView, @NonNull final ViewGroup parent) {
-        final Recipe recipe = getItem(position);
-
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item, parent, false);
+        View listItem = convertView;
+        if (listItem == null) {
+            listItem = LayoutInflater.from(mContext).inflate(R.layout.search_item, parent, false);
         }
-        final TextView cardTextView = convertView.findViewById(R.id.helloText);
-        cardTextView.setText(recipe.getName());
 
-        final long ONE_MEGABYTE = 1024 * 1024;
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        storageReference.child(recipe.getUri()).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                Drawable drawable = new BitmapDrawable(parent.getResources(), bitmap);
-                cardTextView.setBackground(drawable);
-            }
-        });
+        final Recipe recipe = mRecipeList.get(position);
 
-        return convertView;
+        if (recipe != null) {
+            final TextView cardTextView = listItem.findViewById(R.id.helloText);
+            cardTextView.setText(recipe.getName());
+
+            final ImageView recipeImageView = listItem.findViewById(R.id.recipe_image_view);
+
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            storageReference.child(recipe.getUri()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso.get().load(uri).fit().centerCrop().into(recipeImageView);
+                }
+            });
+        }
+        return listItem;
     }
 }

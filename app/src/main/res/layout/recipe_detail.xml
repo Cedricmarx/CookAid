@@ -27,24 +27,11 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/recipe_detail_recipe"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:lines="4"
-                android:text=" "
-                android:textAlignment="viewStart"
-                android:textColor="#000"
-                android:textSize="18sp" />
-
-            <TextView
                 android:id="@+id/recipe_detail_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="Beginner"
+                android:text="None"
                 android:textColor="#000"
                 android:textSize="12sp" />
 
@@ -57,7 +44,20 @@
                 android:text="Beginner"
                 android:textColor="#000"
                 android:textSize="10sp"
-                android:textStyle="italic"/>
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/recipe_detail_recipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:lines="4"
+                android:text=" "
+                android:textAlignment="viewStart"
+                android:textColor="#000"
+                android:textSize="18sp" />
 
         </LinearLayout>
 </RelativeLayout>

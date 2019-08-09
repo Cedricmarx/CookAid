@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -26,51 +26,31 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
 
-/**
- * An activity representing a list of Recipes. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link RecipeDetailActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
- */
 public class RecipeListActivity extends AppCompatActivity {
 
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
     private boolean mTwoPane;
-    private final ArrayList<Recipe> likedRecipeList = new ArrayList<>();
+    private final ArrayList<Recipe> mLikedRecipeList = new ArrayList<>();
     private SimpleItemRecyclerViewAdapter mAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         if (findViewById(R.id.recipe_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
             mTwoPane = true;
         }
 
@@ -89,7 +69,7 @@ public class RecipeListActivity extends AppCompatActivity {
                             Recipe recipe = recipeDs.getValue(Recipe.class);
 
                             if (recipe.getId().equals(recipeId)) {
-                                likedRecipeList.add(recipe);
+                                mLikedRecipeList.add(recipe);
                                 mAdapter.notifyDataSetChanged();
                             }
                         }
@@ -110,7 +90,7 @@ public class RecipeListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        mAdapter = new SimpleItemRecyclerViewAdapter(this, likedRecipeList, mTwoPane);
+        mAdapter = new SimpleItemRecyclerViewAdapter(this, mLikedRecipeList, mTwoPane);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -127,6 +107,11 @@ public class RecipeListActivity extends AppCompatActivity {
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(RecipeDetailFragment.ARG_ITEM_ID, recipe.getId());
+                    arguments.putString(RecipeDetailFragment.ARG_ITEM_LEVEL, recipe.getLevel());
+                    arguments.putString(RecipeDetailFragment.ARG_ITEM_RECIPE, recipe.getRecipe());
+                    arguments.putString(RecipeDetailFragment.ARG_ITEM_URI, recipe.getUri());
+                    arguments.putString(RecipeDetailFragment.ARG_ITEM_CATEGORY, recipe.getCategory());
+                    arguments.putString(RecipeDetailFragment.ARG_ITEM_NAME, recipe.getName());
                     RecipeDetailFragment fragment = new RecipeDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -170,6 +155,9 @@ public class RecipeListActivity extends AppCompatActivity {
                     Picasso.get().load(uri).fit().centerCrop().into(holder.mImageView);
                 }
             });
+
+            PushDownAnim.setPushDownAnimTo(holder.itemView);
+
             holder.mNameView.setText(mValues.get(position).getName());
             holder.mLevelView.setText(mValues.get(position).getLevel());
 
@@ -189,10 +177,19 @@ public class RecipeListActivity extends AppCompatActivity {
 
             ViewHolder(View view) {
                 super(view);
-                mImageView = (ImageView) view.findViewById(R.id.recipe_image);
-                mNameView = (TextView) view.findViewById(R.id.recipe_name);
-                mLevelView = (TextView) view.findViewById(R.id.recipe_level);
+                mImageView = view.findViewById(R.id.recipe_image);
+                mNameView = view.findViewById(R.id.recipe_name);
+                mLevelView = view.findViewById(R.id.recipe_level);
             }
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

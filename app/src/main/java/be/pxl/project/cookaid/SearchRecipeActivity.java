@@ -16,9 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class SearchRecipeActivity extends AppCompatActivity {
@@ -26,7 +26,7 @@ public class SearchRecipeActivity extends AppCompatActivity {
     private SearchRecipeAdapter mArrayAdapter;
     private DatabaseReference mDatabase;
     private TextView mErrorTextView;
-    private Button likeBtn, dislikeBtn;
+    private Button mLikeBtn, mDislikeBtn;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -37,9 +37,11 @@ public class SearchRecipeActivity extends AppCompatActivity {
 
         mRecipeList = new ArrayList<>();
         Button backBtn = findViewById(R.id.search_recipes_back_btn);
-        likeBtn = findViewById(R.id.like_btn);
-        dislikeBtn = findViewById(R.id.dislike_btn);
+        mLikeBtn = findViewById(R.id.like_btn);
+        mDislikeBtn = findViewById(R.id.dislike_btn);
         mErrorTextView = findViewById(R.id.error_text_view);
+
+        PushDownAnim.setPushDownAnimTo(backBtn, mLikeBtn, mDislikeBtn);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,14 +50,14 @@ public class SearchRecipeActivity extends AppCompatActivity {
             }
         });
 
-        likeBtn.setOnClickListener(new View.OnClickListener() {
+        mLikeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 flingContainer.getTopCardListener().selectRight();
             }
         });
 
-        dislikeBtn.setOnClickListener(new View.OnClickListener() {
+        mDislikeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 flingContainer.getTopCardListener().selectLeft();
@@ -64,7 +66,7 @@ public class SearchRecipeActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mArrayAdapter = new SearchRecipeAdapter(this, R.layout.item, R.id.helloText, mRecipeList);
+        mArrayAdapter = new SearchRecipeAdapter(this, mRecipeList);
         flingContainer.setAdapter(mArrayAdapter);
 
         refreshRecipeList();
@@ -78,11 +80,10 @@ public class SearchRecipeActivity extends AppCompatActivity {
 
             @Override
             public void onLeftCardExit(Object o) {
-                if (!mRecipeList.isEmpty()) {
-                    Recipe recipe = (Recipe) o;
-                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    mDatabase.child("users").child(userId).child("dislikedRecipeIds").child(recipe.getId()).setValue(recipe.getId());
-                }
+                Recipe recipe = (Recipe) o;
+                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                mDatabase.child("users").child(userId).child("dislikedRecipeIds").child(recipe.getId()).setValue(recipe.getId());
+
 
                 refreshRecipeList();
                 Toast.makeText(SearchRecipeActivity.this, "Dislike!", Toast.LENGTH_SHORT).show();
@@ -90,11 +91,10 @@ public class SearchRecipeActivity extends AppCompatActivity {
 
             @Override
             public void onRightCardExit(Object o) {
-                if (!mRecipeList.isEmpty()) {
-                    Recipe recipe = (Recipe) o;
-                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    mDatabase.child("users").child(userId).child("savedRecipeIds").child(recipe.getId()).setValue(recipe.getId());
-                }
+                Recipe recipe = (Recipe) o;
+                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                mDatabase.child("users").child(userId).child("savedRecipeIds").child(recipe.getId()).setValue(recipe.getId());
+
 
                 refreshRecipeList();
                 Toast.makeText(SearchRecipeActivity.this, "Like!", Toast.LENGTH_SHORT).show();
@@ -143,16 +143,16 @@ public class SearchRecipeActivity extends AppCompatActivity {
 
                 if (mRecipeList.isEmpty()) {
                     mErrorTextView.setVisibility(View.VISIBLE);
-                    likeBtn.setEnabled(false);
-                    likeBtn.setAlpha(0.5F);
-                    dislikeBtn.setEnabled(false);
-                    dislikeBtn.setAlpha(0.5F);
+                    mLikeBtn.setEnabled(false);
+                    mLikeBtn.setAlpha(0.5F);
+                    mDislikeBtn.setEnabled(false);
+                    mDislikeBtn.setAlpha(0.5F);
                 } else {
                     mErrorTextView.setVisibility(View.INVISIBLE);
-                    likeBtn.setEnabled(true);
-                    likeBtn.setAlpha(1);
-                    dislikeBtn.setEnabled(true);
-                    dislikeBtn.setAlpha(1);
+                    mLikeBtn.setEnabled(true);
+                    mLikeBtn.setAlpha(1);
+                    mDislikeBtn.setEnabled(true);
+                    mDislikeBtn.setAlpha(1);
                 }
             }
 

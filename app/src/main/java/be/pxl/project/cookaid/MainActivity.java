@@ -1,33 +1,37 @@
 package be.pxl.project.cookaid;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        View decorView = getWindow().getDecorView();
-//        // Hide both the navigation bar and the status bar.
-//        // SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
-//        // a general rule, you should design your app to hide the status bar whenever you
-//        // hide the navigation bar.
-//        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-//                | View.SYSTEM_UI_FLAG_FULLSCREEN;
-//        decorView.setSystemUiVisibility(uiOptions);
-
         setContentView(R.layout.activity_main);
+
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        requestPermissions(new String[]{Manifest.permission.CAMERA}, 2);
+        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
+        requestPermissions(new String[]{Manifest.permission.INTERNET}, 4);
+
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             finish();
             startActivity(new Intent(MainActivity.this, HomeActivity.class));
         }
+
+        Button loginPageBtn = findViewById(R.id.loginPageButton);
+        Button signUpPageBtn = findViewById(R.id.signUpPageButton);
+
+        PushDownAnim.setPushDownAnimTo(loginPageBtn, signUpPageBtn);
     }
 
     public void loginPageButton_Clicked(View view) {
@@ -35,6 +39,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signUpPageButton_Clicked(View view) {
-        startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+        startActivity(new Intent(MainActivity.this, SignUpActivity.class));
     }
 }
