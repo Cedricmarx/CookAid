@@ -17,11 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-        requestPermissions(new String[]{Manifest.permission.CAMERA}, 2);
-        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
-        requestPermissions(new String[]{Manifest.permission.INTERNET}, 4);
-
+        requestPermissions(new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA,}, 1);
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             finish();
